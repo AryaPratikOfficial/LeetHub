@@ -4,11 +4,26 @@ import { userList } from '../db/users';
 const Leaderboard = () => {
   const [leetcodeData, setLeetcodeData] = useState([]);
   const [top3qsolver, setTop3qsolver] = useState([]);
-  const [dailyrecords , setDailyrecords ] = useState([]);
 
   useEffect(() => {
     const fetchAll = async () => {
       try {
+        
+// pahle che chk karega ki sessionStorage me data hai ki ni
+        const cached = sessionStorage.getItem('leetcodeData');
+        if (cached) {
+          console.log("📦 Using cached data from sessionStorage");
+          const parsed = JSON.parse(cached);
+          setLeetcodeData(parsed);
+
+          
+          const sorted = [...parsed].sort((a, b) => b.data.totalSolved - a.data.totalSolved);
+          setTop3qsolver(sorted.slice(0, 3));
+          return; 
+        }
+
+        console.log("🌐 Fetching fresh data from API...");
+
         // 🔹 1. Fetch all users in parallel
         const responses = await Promise.all(
           userList.users.map(async (user) => {
@@ -22,9 +37,10 @@ const Leaderboard = () => {
         setLeetcodeData(responses);
         sessionStorage.setItem('leetcodeData', JSON.stringify(responses));
 
-        // 🔹 3. Call topThree after data fetched
+        // 🔹 3. Calculate top 3
         const sorted = [...responses].sort((a, b) => b.data.totalSolved - a.data.totalSolved);
         setTop3qsolver(sorted.slice(0, 3));
+
       } catch (err) {
         console.error("Error fetching LeetCode data:", err);
       }
@@ -33,41 +49,19 @@ const Leaderboard = () => {
     fetchAll();
   }, []); // Runs only once (on mount)
 
-
-
-const calculateDaily = () => {
-          leetcodeData.forEach(element => {
-            // Logic to calculate daily records
-                if(isToday(element.submissionCalendar[0])) {
-                    setDailyrecords(prev => [...prev, {username : element.submissionCalendar[0],count : element.submissionCalendar[1]}]);
-                }
-                else{
-                     setDailyrecords(prev => [...prev, {username : element.submissionCalendar[0],count : 0}]);
-                }
-          });
-}
-
-const isValid = (dateCode) => {
-    const today = new Date();
-    // convert karna padega coded dates ko
-    
-}
-
-
-
-
-
-
-
-
-
+  // 🔹 Manual refresh button for dev
+  const refreshCache = () => {
+    sessionStorage.removeItem('leetcodeData');
+    window.location.reload();
+  };
 
   return (
     <div>
       <h1>Leaderboard</h1>
+      <button onClick={refreshCache}>♻️ Refresh Cache</button>
 
       <div className="top3questionsolvers">
-        <h2>Top 3 Question Solvers</h2> 
+        <h2>Top 3 Question Solvers</h2>
         <ul>
           <li>Rank 1: {top3qsolver[0]?.username} — {top3qsolver[0]?.data.totalSolved}</li>
           <li>Rank 2: {top3qsolver[1]?.username} — {top3qsolver[1]?.data.totalSolved}</li>
@@ -75,15 +69,26 @@ const isValid = (dateCode) => {
         </ul>
       </div>
 
-<div className="daily-leaderboard">
-<h1>daily Leaderboard</h1>
-     <h2> Top three daily</h2>
-     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-     </ul>
+<div className="daily-dashboard">
+  <h1>🧩 Daily Problem Solving Dashboard</h1>
 
+  <p>Here’s today’s quick summary of all ACM members’ problem-solving activity 👇</p>
+
+  <div className="daily-summary">
+    <h3>📅 Date: {new Date().toLocaleDateString()}</h3>
+    <p>Total Questions Solved Today: <strong>42</strong></p>
+    <p>Active Users Today: <strong>7</strong></p>
+    <p>Average Problems per Active User: <strong>6</strong></p>
+  </div>
+
+  <h2>🔥 Top 3 Daily Solvers (dummy) </h2>
+  <ul>
+    <li>🥇 <strong>Divyansh006</strong> — 11 problems solved</li>
+    <li>🥈 <strong>Rajat2004</strong> — 9 problems solved</li>
+    <li>🥉 <strong>PratikArya07</strong> — 7 problems solved</li>
+  </ul>
+
+  
 </div>
 
       <div className="stats-section">

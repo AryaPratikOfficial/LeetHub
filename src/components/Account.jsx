@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
 
 import { useEffect } from 'react'
-const Account = () => {
+const Account = (currentUser , currentUserName) => {
 
   const [leetcodeData, setLeetcodeData] = useState([]);
-  
- 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!currentUser) return;
+
+      const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${currentUser.username}`);
+      const data = await res.json();
+      setLeetcodeData(data);
+    };
+
+    fetchData();
+  }, [currentUser]);
 
 
   return (
     <div>
      <h1>Account</h1>
-
+ <h1> hi , { currentUserName}</h1>
 
 
 
