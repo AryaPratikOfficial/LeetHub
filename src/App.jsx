@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Account from './components/Account'
 import Search from './components/Search'
+import Leaderboard from './components/Leaderboard'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
        <Routes>
          <Route path="/account" element={<Account />} />
          <Route path="/search" element={<Search />} />
+         <Route path="/leaderboard" element={<Leaderboard />} />
        </Routes>
     </div>
   )

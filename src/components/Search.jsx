@@ -7,6 +7,7 @@ const Search = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [weeklySolved, setWeeklySolved] = useState(0);
 
 
 const fetchData = () => {
@@ -26,12 +27,25 @@ const fetchData = () => {
     return () => clearTimeout(timer);
 }, [searchInput]);
 
-// const entries = Object.entries(userData.submissioncalendar);
-// console.log(entries);
-// const lastDateCode = entries[0][0];
+useEffect(() => {
+// Calculate weekly solved questions
 
- //const date = new Date(enteries)
+const now = Date.now() / 1000; // current time in seconds
+const weekAgo = now - 7 * 24 * 60 * 60; // 7 days ago
 
+let weeklySolvedCount = 0;
+
+// loop through all timestamps
+for (const [timestamp, count] of Object.entries(userData?.submissionCalendar || {})) {
+  const ts = Number(timestamp);
+  if (ts >= weekAgo) {
+    weeklySolvedCount += count;
+  }
+}
+
+setWeeklySolved(weeklySolvedCount);
+
+}, [userData]);
 
 
   return (
@@ -48,9 +62,11 @@ const fetchData = () => {
             <h4>Ranking : {userData?.ranking || "N/A"}</h4>
             <h4>Contribution Points : {userData?.contributionPoints || 0}</h4>
             <h4>Acceptance Rate : {userData?.acceptanceRate || "N/A"}</h4>
-            
-            <h4>weekly Question solved : </h4>
+
+            <h4>weekly Question solved :{weeklySolved} </h4>
         </div>
+
+
     </div>
   )
 }
