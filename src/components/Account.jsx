@@ -9,7 +9,7 @@ const Account = () => {
 
   return (
     <div>
-      <input type="text" className="search-box" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+     <h1>Account</h1>
     </div>
   )
 }
