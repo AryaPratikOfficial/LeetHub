@@ -20,9 +20,9 @@ const Account = (currentUser , currentUserName) => {
 
   return (
     <div>
-     <h1>Account</h1>
- <h1> hi , { currentUserName}</h1>
-
+     
+ <h1> hi , { sessionStorage.getItem("name")}</h1>
+      
 
 
 
@@ -55,6 +55,9 @@ const Account = (currentUser , currentUserName) => {
   </div>
 </div>
 
+
+
+<p>hardcoded now</p>
     </div>
   )
 }

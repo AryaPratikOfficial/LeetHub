@@ -11,7 +11,7 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  // 🔹 Load from sessionStorage on reload
+  // act as a global var , u can use it (no need to pass props)
   useEffect(() => {
     const savedName = sessionStorage.getItem("name");
     const savedUsername = sessionStorage.getItem("username");

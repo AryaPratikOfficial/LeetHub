@@ -1,7 +1,7 @@
 import React, { use, useEffect } from 'react'
 import { useState } from 'react'
 const Search = () => {
-    const [searchInput, setSearchInput] = useState("divyansh006");
+    const [searchInput, setSearchInput] = useState("");
    
 
   const [userData, setUserData] = useState(null);
@@ -11,13 +11,14 @@ const Search = () => {
 
 
 const fetchData = () => {
+  if(searchInput.trim() === "") return;
     console.log("Fetching data for:", searchInput);
     setLoading(true);
     fetch(`https://leetcode-stats-api.herokuapp.com/${searchInput}`)
       .then(res => res.json())
       
       .then(data => setUserData(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err) );
       setLoading(false);
 }
 
@@ -47,7 +48,7 @@ setWeeklySolved(weeklySolvedCount);
 
 }, [userData]);
 
-
+console.log(userData);
   return (
     <div>
         <h1>Search</h1>
@@ -56,8 +57,13 @@ setWeeklySolved(weeklySolvedCount);
 
     <h1> {loading ? "Loading..." : error ? "Error fetching data" : "User Data"  }</h1>
 
-        <div className="user-stats">
-<p>{JSON.stringify(userData)}</p>
+           <div style={userData?.status=="error" ? {opacity : 1} : {opacity : 0}} className="not-found">
+            Not found 
+           </div>
+
+
+        <div style={ userData==null ? {opacity : 0.1} : {opacity : 1}} className="user-stats">
+
             <h4>No of question solved : {userData?.totalSolved || 0}</h4>
             <h4>Ranking : {userData?.ranking || "N/A"}</h4>
             <h4>Contribution Points : {userData?.contributionPoints || 0}</h4>
