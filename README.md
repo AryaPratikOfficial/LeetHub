@@ -19,6 +19,7 @@ This project tracks members' coding progress and displays rankings using the **L
 - 🔍 **Search Page**
   - Search any LeetCode username  
   - Debounced input for smooth typing  
+  - Weekly stats (by calculating)
   - Session-based caching for faster repeated lookups  
 
 - 👤 **Signup (One-Time)**
