@@ -1,16 +1,57 @@
-# React + Vite
+# 🧠 LeetHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collaborative **LeetCode leaderboard portal** built with **React (Vite)** — designed for ACM Club members of **VNIT Nagpur**.  
+This project tracks members' coding progress and displays rankings using the **LeetCode public API**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Features
 
-## React Compiler
+- 🏆 **Leaderboard Page**
+  - Shows all club members with their total solved questions  
+  - Sorting *(coming soon)*  
+  - Daily & weekly stats *(coming soon)*  
+  - LeetCode rating  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔍 **Search Page**
+  - Search any LeetCode username  
+  - Debounced input for smooth typing  
+  - Session-based caching for faster repeated lookups  
 
-## Expanding the ESLint configuration
+- 👤 **Signup (One-Time)**
+  - On first visit, users enter **Name** and **LeetCode username**  
+  - Stored securely in **sessionStorage** (only for the current tab/session)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔒 **Smart Logout**
+  - Clears user session and cache data  
+  - Keeps leaderboard and search cache intact  
+  - Optionally asks for re-login if user data is missing or invalid  
+
+- 🤖 **Future Plan**
+  - `/account` page with AI-based next-problem suggestions (Gemini API)  
+  - Sorting, daily & weekly rank tracking  
+  - Badging 🎖️ feature 
+
+---
+
+## 🧩 Tech Stack
+
+- ⚛️ **React.js (Vite)** – Fast frontend framework  
+- 🧭 **React Router** – Navigation and route protection  
+- 💾 **Session Storage** – Temporary user data & caching  
+- 📊 **LeetCode Stats API** – Fetch problem-solving data  
+- 🤖 *(Planned)* Gemini AI API – Personalized recommendations  
+
+---
+
+## 🚀 Run Locally
+
+```bash
+# Clone the repo
+git clone https://github.com/AryaPratikOfficial/LeetHub.git
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
