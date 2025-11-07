@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { userList } from '../db/users';
-
+import './leaderboard.css'
 const Leaderboard = () => {
   const [leetcodeData, setLeetcodeData] = useState([]);
   const [top3qsolver, setTop3qsolver] = useState([]);
@@ -57,22 +57,40 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h1>Leaderboard</h1>
+<div className="hero1">
+      <div className="title">
+         <h1 >Leaderboard</h1>
       <button onClick={refreshCache}>♻️ Refresh Cache</button>
+      </div>
+     
 
       <div className="top3questionsolvers">
-        <h2>Top 3 Question Solvers</h2>
-        <ul>
-          <li>Rank 1: {top3qsolver[0]?.username} — {top3qsolver[0]?.data.totalSolved}</li>
-          <li>Rank 2: {top3qsolver[1]?.username} — {top3qsolver[1]?.data.totalSolved}</li>
-          <li>Rank 3: {top3qsolver[2]?.username} — {top3qsolver[2]?.data.totalSolved}</li>
+        <div>
+        <h2 style={{ color : '#00ff66'}}>Top 3 Question Solvers</h2>
+        <ul >
+          <li>Rank 1: 🥇 {top3qsolver[0]?.username} — {top3qsolver[0]?.data.totalSolved}</li>
+          <li>Rank 2: 🥈 {top3qsolver[1]?.username} — {top3qsolver[1]?.data.totalSolved}</li>
+          <li>Rank 3: 🥉 {top3qsolver[2]?.username} — {top3qsolver[2]?.data.totalSolved}</li>
         </ul>
+        </div>
+<div>
+        <h2 style={{ color : '#00ff66'}}> Top 3 Daily Solvers (dummy) </h2>
+  <ul>
+    <li>🥇 <strong>Divyansh006</strong> — 11 problems solved</li>
+    <li>🥈 <strong>Rajat2004</strong> — 9 problems solved</li>
+    <li>🥉 <strong>PratikArya07</strong> — 7 problems solved</li>
+  </ul>
+  </div>
       </div>
 
 <div className="daily-dashboard">
-  <h1>🧩 Daily Problem Solving Dashboard</h1>
+  <div className="daily-heading">
+ <h1>🧩 Daily Problem Solving Dashboard</h1>
 
   <p>Here’s today’s quick summary of all ACM members’ problem-solving activity 👇</p>
+
+  </div>
+ 
 
   <div className="daily-summary">
     <h3>📅 Date: {new Date().toLocaleDateString()}</h3>
@@ -81,23 +99,21 @@ const Leaderboard = () => {
     <p>Average Problems per Active User: <strong>6</strong></p>
   </div>
 
-  <h2>🔥 Top 3 Daily Solvers (dummy) </h2>
-  <ul>
-    <li>🥇 <strong>Divyansh006</strong> — 11 problems solved</li>
-    <li>🥈 <strong>Rajat2004</strong> — 9 problems solved</li>
-    <li>🥉 <strong>PratikArya07</strong> — 7 problems solved</li>
-  </ul>
+  
 
   
 </div>
-
+</div>
       <div className="stats-section">
+        <h1 >Statistics </h1>
         {leetcodeData.length === 0 ? (
           <p>Loading user stats...</p>
         ) : (
-          <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead>
-              <tr>
+
+        
+          <table border="1" cellPadding="8" cellSpacing="4">
+            <thead >
+              <tr style={{color : "00ff66"}}>
                 <th>Username</th>
                 <th>Total Solved</th>
                 <th>Easy</th>

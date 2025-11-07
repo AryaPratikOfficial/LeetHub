@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sixtyfour&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family: share tech mono, monospace;
+    background-color: black;
+    color: white;
+    
+}
+
+.user-stats{
+    
+    margin: 50px;
+    padding: 20px;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+}

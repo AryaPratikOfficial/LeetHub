@@ -1,5 +1,6 @@
 import React, { use, useEffect } from 'react'
 import { useState } from 'react'
+import './Search.css'
 const Search = () => {
     const [searchInput, setSearchInput] = useState("");
    
@@ -62,7 +63,7 @@ console.log(userData);
            </div>
 
 
-        <div style={ userData==null ? {opacity : 0.1} : {opacity : 1}} className="user-stats">
+        <div style={ userData==null ? {opacity : 0} : {opacity : 1}} className="user-stats">
 
             <h4>No of question solved : {userData?.totalSolved || 0}</h4>
             <h4>Ranking : {userData?.ranking || "N/A"}</h4>

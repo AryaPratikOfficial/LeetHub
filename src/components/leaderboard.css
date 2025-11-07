@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sixtyfour&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family: share tech mono, monospace;
+    background-color: black;
+    color: white;
+    
+}
+
+.top3questionsolvers{
+   
+   
+   margin : 50px;
+   display: flex;
+   justify-content: space-evenly;
+
+
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font :400 ;
+    margin-top: 50px;
+    gap: 10px;
+    font-family: Sixtyfour;
+}
+
+.daily-dashboard{
+    
+    margin: 50px;
+    padding: 20px;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+}
+
+.hero1{
+    height: 100vh;
+    width: 100vw;
+    margin: 50px;
+}
+
+.stats-section {
+  
+  color: #00ff66;
+  font-family: 'Share Tech Mono', monospace;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff66;
+  height: 100vh;
+  width: 100vw;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.stats-section table {
+  width: 70%;
+  height: 70%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  text-shadow: 0 0 5px #00ff66;
+  box-shadow: 0 0 15px #00ff66;
+}
+
+.stats-section th {
+  background-color: #001a00;
+  color: #00ff66;
+  padding: 10px;
+}
+
+
