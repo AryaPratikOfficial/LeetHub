@@ -21,7 +21,7 @@ const Account = (currentUser , currentUserName) => {
   return (
     <div>
      
- <h1> hi , { sessionStorage.getItem("name")}</h1>
+ <h1> hi , { localStorage.getItem("name")}</h1>
       
 
 

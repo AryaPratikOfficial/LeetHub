@@ -4,6 +4,7 @@ import Account from './components/Account';
 import Search from './components/Search';
 import Leaderboard from './components/Leaderboard';
 import Navbar from './components/Navbar';
+import { Navigate } from 'react-router-dom';
 const App = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -13,8 +14,8 @@ const App = () => {
 
   // act as a global var , u can use it (no need to pass props)
   useEffect(() => {
-    const savedName = sessionStorage.getItem("name");
-    const savedUsername = sessionStorage.getItem("username");
+    const savedName = localStorage.getItem("name");
+    const savedUsername = localStorage.getItem("username");
     if (savedName && savedUsername) {
       setName(savedName);
       setUsername(savedUsername);
@@ -31,8 +32,8 @@ const App = () => {
       return;
     }
 
-    sessionStorage.setItem("name", name);
-    sessionStorage.setItem("username", username);
+    localStorage.setItem("name", name);
+    localStorage.setItem("username", username);
 
     setIsLoggedIn(true);
     navigate("/leaderboard"); 
@@ -40,7 +41,7 @@ const App = () => {
 
  
   const handleLogout = () => {
-    sessionStorage.clear();
+    localStorage.clear();
     setIsLoggedIn(false);
     setName("");
     setUsername("");
@@ -110,6 +111,7 @@ const App = () => {
       </div>
 
       <Routes>
+        <Route path="/" element={<Navigate to="/leaderboard" />} />
         <Route path="/account" element={<Account />} />
         <Route path="/search" element={<Search />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
